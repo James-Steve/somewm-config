@@ -190,7 +190,7 @@ function M.setup(opts)
 			description = "focus previous by index",
 			group = "client",
 		}),
-        --change this to used workspaces (tag)
+		--change this to used workspaces (tag)
 		awful.key({
 			modifiers = { modkey },
 			key = "Tab",
@@ -228,9 +228,9 @@ function M.setup(opts)
 			description = "swap with previous client by index",
 			group = "client",
 		}),
-        --todo
-        --one binding for restore
-        --one bindging for minimize
+		--todo
+		--one binding for restore
+		--one bindging for minimize
 		awful.key({
 			modifiers = { modkey, "Control" },
 			key = "n",
@@ -525,6 +525,119 @@ function M.setup(opts)
 			end,
 		}),
 	})
+
+	client.connect_signal("request::default_keybindings", function()
+		awful.keyboard.append_client_keybindings({
+			awful.key({
+				modifiers = { modkey },
+				key = "f",
+				on_press = function(c)
+					c.fullscreen = not c.fullscreen
+					c:raise()
+				end,
+				description = "toggle fullscreen",
+				group = "client",
+			}),
+			awful.key({
+				modifiers = { modkey, "Shift" },
+				key = "c",
+				on_press = function(c)
+					c:kill()
+				end,
+				description = "close",
+				group = "client",
+			}),
+			awful.key({
+				modifiers = { modkey, "Control" },
+				key = "space",
+				on_press = function(c)
+					c.floating = not c.floating
+				end,
+				description = "toggle floating",
+				group = "client",
+			}),
+			awful.key({
+				modifiers = { modkey, "Control" },
+				key = "Return",
+				on_press = function(c)
+					c:swap(awful.client.visible(c.screen)[1])
+				end,
+				description = "move to master",
+				group = "client",
+			}),
+			awful.key({
+				modifiers = { modkey },
+				key = "o",
+				on_press = function(c)
+					c:move_to_screen()
+				end,
+				description = "move to screen",
+				group = "client",
+			}),
+			awful.key({
+				modifiers = { modkey },
+				key = "t",
+				on_press = function(c)
+					c.ontop = not c.ontop
+				end,
+				description = "toggle keep on top",
+				group = "client",
+			}),
+			awful.key({
+				modifiers = { modkey },
+				key = ",",
+				on_press = function(c)
+					c.sticky = not c.sticky
+				end,
+				description = "toggle sticky (show on all tags)",
+				group = "client",
+			}),
+		--todo
+        --mod shift n to restore
+			awful.key({
+				modifiers = { modkey },
+				key = "n",
+				on_press = function(c)
+					c.minimized = true
+				end,
+				description = "minimize",
+				group = "client",
+			}),
+            --todo
+            --mod shift m to minimize
+            --mod m to ! minimize
+			awful.key({
+				modifiers = { modkey },
+				key = "m",
+				on_press = function(c)
+					c.maximized = not c.maximized
+					c:raise()
+				end,
+				description = "(un)maximize",
+				group = "client",
+			}),
+			awful.key({
+				modifiers = { modkey, "Control" },
+				key = "m",
+				on_press = function(c)
+					c.maximized_vertical = not c.maximized_vertical
+					c:raise()
+				end,
+				description = "(un)maximize vertically",
+				group = "client",
+			}),
+			awful.key({
+				modifiers = { modkey, "Shift" },
+				key = "m",
+				on_press = function(c)
+					c.maximized_horizontal = not c.maximized_horizontal
+					c:raise()
+				end,
+				description = "(un)maximize horizontally",
+				group = "client",
+			}),
+		})
+	end)
 end
 
 return M
