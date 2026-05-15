@@ -123,6 +123,8 @@ function M.setup(opts)
 	})
 
 	-- tag
+    --todo
+    --take these arrow keys out
 	awful.keyboard.append_global_keybindings({
 		awful.key({
 			modifiers = { modkey },
@@ -138,6 +140,8 @@ function M.setup(opts)
 			description = "view next",
 			group = "tag",
 		}),
+        --todo
+        --change this to tab
 		awful.key({
 			modifiers = { modkey },
 			key = "Escape",
@@ -190,7 +194,8 @@ function M.setup(opts)
 			description = "focus previous by index",
 			group = "client",
 		}),
-		--change this to used workspaces (tag)
+        --todo
+        --change this to escape
 		awful.key({
 			modifiers = { modkey },
 			key = "Tab",
