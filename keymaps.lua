@@ -122,10 +122,8 @@ function M.setup(opts)
 		}),
 	})
 
-	-- tag
-    --todo
-    --take these arrow keys out
 	awful.keyboard.append_global_keybindings({
+    --[[
 		awful.key({
 			modifiers = { modkey },
 			key = "Left",
@@ -140,17 +138,19 @@ function M.setup(opts)
 			description = "view next",
 			group = "tag",
 		}),
+        --]]
         --todo
         --change this to tab
 		awful.key({
 			modifiers = { modkey },
-			key = "Escape",
+			--key = "escape",
+			key = "tab",
 			on_press = awful.tag.history.restore,
 			description = "go back",
 			group = "tag",
 		}),
 		awful.key({
-			modifiers = { modkey, "Control" },
+			modifiers = { modkey, "control" },
 			key = "r",
 			on_press = function()
 				local s = awful.screen.focused()
@@ -159,7 +159,7 @@ function M.setup(opts)
 					return
 				end
 				awful.prompt.run({
-					prompt = "Rename tag: ",
+					prompt = "rename tag: ",
 					text = t.name,
 					textbox = s.mypromptbox.widget,
 					exe_callback = function(new_name)
@@ -198,7 +198,8 @@ function M.setup(opts)
         --change this to escape
 		awful.key({
 			modifiers = { modkey },
-			key = "Tab",
+			--key = "tab",
+			key = "escape",
 			on_press = function()
 				awful.client.focus.history.previous()
 				if client.focus then
@@ -216,7 +217,7 @@ function M.setup(opts)
 			group = "client",
 		}),
 		awful.key({
-			modifiers = { modkey, "Shift" },
+			modifiers = { modkey, "shift" },
 			key = "j",
 			on_press = function()
 				awful.client.swap.byidx(1)
@@ -225,7 +226,7 @@ function M.setup(opts)
 			group = "client",
 		}),
 		awful.key({
-			modifiers = { modkey, "Shift" },
+			modifiers = { modkey, "shift" },
 			key = "k",
 			on_press = function()
 				awful.client.swap.byidx(-1)
@@ -233,11 +234,9 @@ function M.setup(opts)
 			description = "swap with previous client by index",
 			group = "client",
 		}),
-		--todo
-		--one binding for restore
-		--one bindging for minimize
 		awful.key({
-			modifiers = { modkey, "Control" },
+			--modifiers = { modkey, "control" },
+			modifiers = { modkey, "shift" },
 			key = "n",
 			on_press = function()
 				local c = awful.client.restore()
@@ -253,8 +252,10 @@ function M.setup(opts)
 	-- screen
 	awful.keyboard.append_global_keybindings({
 		awful.key({
-			modifiers = { modkey, "Control" },
-			key = "j",
+			--modifiers = { modkey, "control" },
+			modifiers = { modkey },
+			--key = "j",
+			key = ".",
 			on_press = function()
 				awful.screen.focus_relative(1)
 			end,
@@ -262,8 +263,9 @@ function M.setup(opts)
 			group = "screen",
 		}),
 		awful.key({
-			modifiers = { modkey, "Control" },
-			key = "k",
+			--modifiers = { modkey, "Control" },
+			modifiers = { modkey, "Shift" },
+			key = ".",
 			on_press = function()
 				awful.screen.focus_relative(-1)
 			end,
@@ -562,7 +564,8 @@ function M.setup(opts)
 				group = "client",
 			}),
 			awful.key({
-				modifiers = { modkey, "Control" },
+				--modifiers = { modkey, "Control" },
+				modifiers = { modkey, "Shift" },
 				key = "Return",
 				on_press = function(c)
 					c:swap(awful.client.visible(c.screen)[1])
@@ -597,20 +600,16 @@ function M.setup(opts)
 				description = "toggle sticky (show on all tags)",
 				group = "client",
 			}),
-		--todo
-        --mod shift n to restore
 			awful.key({
-				modifiers = { modkey },
-				key = "n",
+				modifiers = { modkey, "Shift"},
+                --key = "n",
+				key = "m",
 				on_press = function(c)
 					c.minimized = true
 				end,
 				description = "minimize",
 				group = "client",
 			}),
-            --todo
-            --mod shift m to minimize
-            --mod m to ! minimize
 			awful.key({
 				modifiers = { modkey },
 				key = "m",
@@ -621,6 +620,7 @@ function M.setup(opts)
 				description = "(un)maximize",
 				group = "client",
 			}),
+            --[[
 			awful.key({
 				modifiers = { modkey, "Control" },
 				key = "m",
@@ -631,6 +631,7 @@ function M.setup(opts)
 				description = "(un)maximize vertically",
 				group = "client",
 			}),
+
 			awful.key({
 				modifiers = { modkey, "Shift" },
 				key = "m",
@@ -641,6 +642,7 @@ function M.setup(opts)
 				description = "(un)maximize horizontally",
 				group = "client",
 			}),
+            --]]
 		})
 	end)
 end
