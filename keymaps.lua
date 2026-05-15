@@ -565,7 +565,7 @@ function M.setup(opts)
 			}),
 			awful.key({
 				--modifiers = { modkey, "Control" },
-				modifiers = { modkey, "Shift" },
+				modifiers = { modkey },
 				key = "Return",
 				on_press = function(c)
 					c:swap(awful.client.visible(c.screen)[1])
