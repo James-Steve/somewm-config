@@ -138,7 +138,7 @@ local modkey = "Mod4"
 
 -- Pointer / touchpad (libinput-backed; see awful.input for the full list).
 -- awful.input.tap_to_click      = 1
--- awful.input.natural_scrolling = 1
+ awful.input.natural_scrolling = 1
 -- awful.input.pointer_speed     = 0.5
 
 -- Per-monitor fractional scaling.
@@ -373,7 +373,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
 			c:tags(tags)
 		end
 	else
-		awful.tag({ "dev", "web", "chat", "files", "media" }, s, awful.layout.layouts[1])
+		awful.tag({"1", "2", "3", "4", "5", "6", "7", "8", "9"}, s, awful.layout.layouts[1])
 	end
 
 	s.mypromptbox = awful.widget.prompt()
