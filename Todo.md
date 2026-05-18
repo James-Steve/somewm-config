@@ -7,3 +7,7 @@
 - [ ] layouts
 - [ ] theme
 - [ ] title bar
+
+## Tutorials
+Add PRs to docs repo 
+- [ ] two finger right click
