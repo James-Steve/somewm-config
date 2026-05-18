@@ -11,3 +11,7 @@
 ## Tutorials
 Add PRs to docs repo 
 - [ ] two finger right click
+
+
+# Contributing
+- [ ] hotkeys_pop, widget is nill
