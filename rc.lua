@@ -348,7 +348,7 @@ screen.connect_signal("request::wallpaper", function(s)
 	end
 end)
 
-require("bars").setup(opts)
+require("desktop-decoration").setup(opts)
 -- Client mouse bindings registered via signal so user code can append to the
 -- defaults. The same pattern repeats below for keybindings and rules.
 client.connect_signal("request::default_mousebindings", function()
