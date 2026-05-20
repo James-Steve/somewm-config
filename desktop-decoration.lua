@@ -2,13 +2,13 @@ local awful = require("awful")
 local M = {}
 
 function M.setup(opts)
-    local gears = opts.gears
-    local beautiful = opts.beautiful
-    local wibox = opts.wibox
+	local gears = opts.gears
+	local beautiful = opts.beautiful
+	local wibox = opts.wibox
 	local modkey = opts.modkey
 	local terminal = opts.terminal
 	local mymainmenu = opts.mymainmenu
-    local dpi = opts.dpi
+	local dpi = opts.dpi
 	-- Tag persistence across monitor hotplug
 	-- The save handler lives in awful.permissions.tag_screen and stores tag
 	-- metadata into awful.permissions.saved_tags keyed by connector name.
@@ -165,27 +165,26 @@ function M.setup(opts)
 			position = "top",
 			screen = s,
 			widget = {
-				layout = wibox.layout.stack,
+				layout = wibox.layout.align.horizontal,
 				{
-					layout = wibox.layout.align.horizontal,
+					layout = wibox.layout.fixed.horizontal,
+					mylauncher,
+					s.mytaglist,
+					s.mypromptbox,
+					s.mytasklist,
+				},
+				{
+				layout = wibox.layout.align.horizontal,
 					{
-						layout = wibox.layout.fixed.horizontal,
-						mylauncher,
-						s.mytaglist,
-						s.mypromptbox,
-						s.mytasklist,
+						mytextclock,
+						halign = "center",
+						widget = wibox.container.place,
 					},
-					{ widget = wibox.container.background },
 					{
 						layout = wibox.layout.fixed.horizontal,
 						wibox.widget.systray(),
 						s.mylayoutbox,
 					},
-				},
-				{
-					mytextclock,
-					halign = "center",
-					widget = wibox.container.place,
 				},
 			},
 		})
