@@ -161,7 +161,7 @@ awful.input.rules = {
 	{
 		rule = { type = "pointer" },
 		properties = {
-			natural_scrolling = 1,
+			natural_scrolling = 0,
 			accel_profile = "flat",
 		},
 	},
