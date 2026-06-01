@@ -474,3 +474,9 @@ end)
 client.connect_signal("mouse::enter", function(c)
 	c:activate({ context = "mouse_enter", raise = false })
 end)
+
+local dimtime = 5*60
+awesome.set_idle_timeout("dim", dimtime, function()
+    -- dim your screens
+    awesome.dpms_off()
+end)
