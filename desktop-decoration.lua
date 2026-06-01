@@ -16,7 +16,6 @@ function M.setup(opts)
 	--   tag.disconnect_signal("request::screen", awful.permissions.tag_screen)
 
 	-- Wibar
-
 	local mytextclock = wibox.widget({
 		{
 			{
@@ -38,6 +37,8 @@ function M.setup(opts)
 	-- if this connector was previously seen; otherwise create the default set.
 	screen.connect_signal("request::desktop_decoration", function(s)
 		-- Restore saved tags if this output was previously removed
+		dscreen = { screen = s }
+		local OptsAndScren = require("uitls").merge(opts, dscreen)
 		local output_name = s.output and s.output.name
 		local restore = output_name and awful.permissions.saved_tags[output_name]
 		if restore then
@@ -160,33 +161,11 @@ function M.setup(opts)
 				widget = wibox.container.background,
 			},
 		})
-
+		local widgetbar = require("widget-bar")
 		s.mywibox = awful.wibar({
 			position = "top",
 			screen = s,
-			widget = {
-				layout = wibox.layout.align.horizontal,
-				{
-					layout = wibox.layout.fixed.horizontal,
-					mylauncher,
-					s.mytaglist,
-					s.mypromptbox,
-					s.mytasklist,
-				},
-				{
-				layout = wibox.layout.align.horizontal,
-					{
-						mytextclock,
-						halign = "center",
-						widget = wibox.container.place,
-					},
-					{
-						layout = wibox.layout.fixed.horizontal,
-						wibox.widget.systray(),
-						s.mylayoutbox,
-					},
-				},
-			},
+			widget = widgetbar.setup(OptsAndScren),
 		})
 	end)
 end
