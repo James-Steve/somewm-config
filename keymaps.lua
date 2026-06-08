@@ -272,7 +272,7 @@ function M.setup(opts)
 			--modifiers = { modkey, "control" },
 			modifiers = { modkey },
 			--key = "j",
-			key = ".",
+			key = "period",
 			on_press = function()
 				awful.screen.focus_relative(1)
 			end,
