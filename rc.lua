@@ -476,6 +476,33 @@ client.connect_signal("mouse::enter", function(c)
 end)
 
 awesome.set_idle_timeout("dim", 600, function()
-    -- dim your screens
-    awesome.dpms_off()
+	-- dim your screens
+	awesome.dpms_off()
 end)
+--[[
+awful.screen.connect_for_each_screen(function(s)
+	if s.output.model == "DELL P2219H" and s.ouput.name == "DP-1" then
+		output.get_by_name("DP-2").transform = "270"
+	end
+end)
+for s in screen do
+	if s.output.model == "DELL P2219H" and s.ouput.name == "DP-1" then
+		output.get_by_name("DP-1").transform = "270"
+	end
+end
+--]]
+local o1 = output.get_by_name("HDMI-A-1")
+local o2 = output.get_by_name("DP-1")
+--Office Monitor Arrangement
+if o1 ~= nill and o2 ~= nill then
+	if
+		o1.model == "DELL P2219H"
+		and o2.model == "DELL P2219H"
+		and o1.serial == "CY5RC93"
+		and o2.serial == "DT6RC93"
+	then
+		o2.transform = "90"
+
+		o2.transform = "270"
+	end
+end
